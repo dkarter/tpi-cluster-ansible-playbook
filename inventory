@@ -1,0 +1,11 @@
+[master]
+tpi1
+
+[agent]
+tpi2
+tpi3
+tpi4
+
+[tpi_cluster:children]
+master
+agent

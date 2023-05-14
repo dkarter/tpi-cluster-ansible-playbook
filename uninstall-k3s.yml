@@ -1,0 +1,11 @@
+---
+- hosts: tpi_cluster
+
+  tasks:
+    - name: Uninstall k3s server
+      command: /usr/local/bin/k3s-uninstall.sh
+      when: "'master' in group_names"
+
+    - name: Uninstall k3s agents
+      command: /usr/local/bin/k3s-agent-uninstall.sh
+      when: "'agent' in group_names"

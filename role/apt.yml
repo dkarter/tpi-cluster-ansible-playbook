@@ -1,0 +1,16 @@
+---
+- name: Update apt repository
+  apt:
+    update_cache: true
+  become: true
+
+- name: Upgrade packages
+  apt:
+    upgrade: true
+  become: true
+
+- name: Upgrade packages
+  apt:
+    pkg:
+      - neovim
+  become: true
