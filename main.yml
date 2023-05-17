@@ -40,14 +40,21 @@
 
     - name: Install K3S Server on Master Node
       shell: |
-        curl -sfL https://get.k3s.io | K3S_TOKEN='{{ k3s_token.stdout }}' sh -
+        curl -sfL https://get.k3s.io | sh - \
+          --write-kubeconfig-mode 644 \
+          --disable local-storage
+      environment:
+        K3S_TOKEN: '{{ k3s_token.stdout }}'
       when:
         - "'master' in group_names"
         - k3s_version.rc != 0
 
     - name: Install K3S Agent on Agent Nodes
       shell: |
-        curl -sfL https://get.k3s.io | K3S_URL='{{ k3s_url }}' K3S_TOKEN='{{ k3s_token.stdout }}' sh -
+        curl -sfL https://get.k3s.io | sh -
+      environment:
+        K3S_URL: '{{ k3s_url }}'
+        K3S_TOKEN: '{{ k3s_token.stdout }}'
       when:
         - "'agent' in group_names"
         - k3s_version.rc != 0
