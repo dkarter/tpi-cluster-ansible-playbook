@@ -1,0 +1,7 @@
+---
+- hosts: tpi_cluster
+
+  tasks:
+    - name: Shutdown Nodes
+      community.general.shutdown:
+      become: true
