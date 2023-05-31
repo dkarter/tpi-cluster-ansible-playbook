@@ -13,4 +13,7 @@
   apt:
     pkg:
       - neovim
+      - nfs-common
+      - open-iscsi
+      - util-linux
   become: true
